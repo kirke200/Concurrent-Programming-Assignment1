@@ -52,9 +52,10 @@ class Conductor extends Thread {
 
 	Pos curpos;                      // Current position 
 	Pos newpos;                      // New position to go to
+	Semaphore[][] _semaphores;
 
-	public Conductor(int no, CarDisplayI cd, Gate g) {
-
+	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores) {
+		_semaphores = semaphores;
 		this.no = no;
 		this.cd = cd;
 		mygate = g;
@@ -114,10 +115,11 @@ class Conductor extends Thread {
 				}
 
 				newpos = nextPos(curpos);
-
+				_semaphores[newpos.row][newpos.col].P();
 				car.driveTo(newpos);
-
+				_semaphores[curpos.row][curpos.col].V();
 				curpos = newpos;
+
 			}
 
 		} catch (Exception e) {
@@ -134,15 +136,28 @@ public class CarControl implements CarControlI{
 	CarDisplayI cd;           // Reference to GUI
 	Conductor[] conductor;    // Car controllers
 	Gate[] gate;              // Gates
+	Semaphore[][] semaphores;
 
 	public CarControl(CarDisplayI cd) {
 		this.cd = cd;
 		conductor = new Conductor[9];
 		gate = new Gate[9];
+		semaphores = new Semaphore[11][12];
 
+		//Creates array of semaphores for every tile
+		for (int i = 0; i < semaphores.length; i++) {
+			for (int j = 0; j < semaphores[0].length; j++ ) {
+				semaphores[i][j] = new Semaphore(1);
+			}
+		}
 		for (int no = 0; no < 9; no++) {
 			gate[no] = new Gate();
-			conductor[no] = new Conductor(no,cd,gate[no]);
+			conductor[no] = new Conductor(no,cd,gate[no], semaphores);
+			//Sets the semaphore for the starting position as taken.
+			try
+			{
+				semaphores[cd.getStartPos(no).row][cd.getStartPos(no).col].P();
+			} catch (InterruptedException e) { }
 			conductor[no].setName("Conductor-" + no);
 			conductor[no].start();
 		} 
