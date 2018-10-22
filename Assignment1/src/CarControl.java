@@ -6,6 +6,8 @@
 
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 class Gate {
 
@@ -52,14 +54,24 @@ class Conductor extends Thread {
 
 	Pos curpos;                      // Current position 
 	Pos newpos;                      // New position to go to
+	Semaphore[][] _semaphores;
+	Semaphore _criticalRegion;
+	ArrayList<Pos> criticalRegionEntrances = new ArrayList<Pos>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
+	ArrayList<Pos> criticalRegionExits = new ArrayList<Pos>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
+	boolean inCriticalRegion = false;
+	Alley _alley;
+	boolean handInAlleyToken = false;
 
-	public Conductor(int no, CarDisplayI cd, Gate g) {
-
+	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Alley alley) {
+		_alley = alley;
+		_semaphores = semaphores;
+		_criticalRegion = criticalRegion;
 		this.no = no;
 		this.cd = cd;
 		mygate = g;
 		startpos = cd.getStartPos(no);
 		barpos   = cd.getBarrierPos(no);  // For later use
+
 
 		col = chooseColor();
 
@@ -106,7 +118,7 @@ class Conductor extends Thread {
 			curpos = startpos;
 			cd.register(car);
 
-			while (true) { 
+			while (true) {
 
 				if (atGate(curpos)) { 
 					mygate.pass(); 
@@ -114,10 +126,32 @@ class Conductor extends Thread {
 				}
 
 				newpos = nextPos(curpos);
-
+				if(inCriticalRegion == false && criticalRegionEntrances.contains(newpos) && !criticalRegionEntrances.contains(curpos)) {
+					_alley.enter(no);
+					handInAlleyToken = true;
+					inCriticalRegion = true;
+				}
+				_semaphores[newpos.row][newpos.col].P();
 				car.driveTo(newpos);
+				_semaphores[curpos.row][curpos.col].V();
+
+
+				if(inCriticalRegion == true && criticalRegionExits.contains(newpos) && criticalRegionEntrances.contains(curpos)) {
+					_alley.leave(no);
+					handInAlleyToken = true;
+					inCriticalRegion = false;
+				}
+
+				if(handInAlleyToken == true) {
+					_alley.handInAlleyToken();
+					handInAlleyToken = false;
+				}
 
 				curpos = newpos;
+
+
+
+
 			}
 
 		} catch (Exception e) {
@@ -134,15 +168,32 @@ public class CarControl implements CarControlI{
 	CarDisplayI cd;           // Reference to GUI
 	Conductor[] conductor;    // Car controllers
 	Gate[] gate;              // Gates
+	Semaphore[][] semaphores;
+	Semaphore criticalRegion;
+	Alley alley;
 
 	public CarControl(CarDisplayI cd) {
 		this.cd = cd;
 		conductor = new Conductor[9];
 		gate = new Gate[9];
+		semaphores = new Semaphore[11][12];
+		criticalRegion = new Semaphore(1);
+		alley = new Alley(new Semaphore(1));
 
+		//Creates array of semaphores for every tile
+		for (int i = 0; i < semaphores.length; i++) {
+			for (int j = 0; j < semaphores[0].length; j++ ) {
+				semaphores[i][j] = new Semaphore(1);
+			}
+		}
 		for (int no = 0; no < 9; no++) {
 			gate[no] = new Gate();
-			conductor[no] = new Conductor(no,cd,gate[no]);
+			conductor[no] = new Conductor(no,cd,gate[no], semaphores, criticalRegion, alley);
+			//Sets the semaphore for the starting position as taken.
+			try
+			{
+				semaphores[cd.getStartPos(no).row][cd.getStartPos(no).col].P();
+			} catch (InterruptedException e) { }
 			conductor[no].setName("Conductor-" + no);
 			conductor[no].start();
 		} 
