@@ -56,11 +56,10 @@ class Conductor extends Thread {
 	Pos newpos;                      // New position to go to
 	Semaphore[][] _semaphores;
 	Semaphore _criticalRegion;
-	ArrayList<Pos> criticalRegionEntrances = new ArrayList<Pos>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
-	ArrayList<Pos> criticalRegionExits = new ArrayList<Pos>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
+	ArrayList<Pos> criticalRegionEntrances = new ArrayList<>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
+	ArrayList<Pos> criticalRegionExits = new ArrayList<>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
 	boolean inCriticalRegion = false;
 	Alley _alley;
-	boolean handInAlleyToken = false;
 
 	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Alley alley) {
 		_alley = alley;
@@ -128,7 +127,6 @@ class Conductor extends Thread {
 				newpos = nextPos(curpos);
 				if(inCriticalRegion == false && criticalRegionEntrances.contains(newpos) && !criticalRegionEntrances.contains(curpos)) {
 					_alley.enter(no);
-					handInAlleyToken = true;
 					inCriticalRegion = true;
 				}
 				_semaphores[newpos.row][newpos.col].P();
@@ -137,15 +135,10 @@ class Conductor extends Thread {
 
 
 				if(inCriticalRegion == true && criticalRegionExits.contains(newpos) && criticalRegionEntrances.contains(curpos)) {
-					_alley.leave(no);
-					handInAlleyToken = true;
+					_alley.leave();
 					inCriticalRegion = false;
 				}
 
-				if(handInAlleyToken == true) {
-					_alley.handInAlleyToken();
-					handInAlleyToken = false;
-				}
 
 				curpos = newpos;
 

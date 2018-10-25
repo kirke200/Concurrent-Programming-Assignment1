@@ -16,19 +16,21 @@ public class Alley {
 
 
     public void enter(int no) {
-        try {
             boolean enterFailed;
             do {
                 enterFailed = false;
-                this.enterOrLeaveAlley.P();
-                System.out.println("Took out alley token: Direction:"+carDirection + "Number of cars: "+carsInAlley);
+                takeOutAlleyToken();
                 if (no < 5 && no > 0) {
                     if (carDirection == 0) {
                         carDirection = 1;
                         carsInAlley++;
                     } else if (carDirection == 2) {
                         handInAlleyToken();
-                        Thread.sleep((long)Math.random()*1000);
+                        try {
+                            Thread.sleep((long)Math.random()*1000);
+                        } catch (InterruptedException e) {
+                            System.out.print("Sleep failed");
+                        }
                         enterFailed = true;
                     } else {
                         carsInAlley++;
@@ -39,34 +41,42 @@ public class Alley {
                         carsInAlley++;
                     } else if (carDirection == 1) {
                         handInAlleyToken();
-                        Thread.sleep((long)Math.random()*1000);
+                        try {
+                            Thread.sleep((long)Math.random()*1000);
+                        } catch (InterruptedException e) {
+                            System.out.print("Sleep failed");
+                        }
                         enterFailed = true;
                     } else {
                         carsInAlley++;
                     }
                 }
             } while(enterFailed);
+            handInAlleyToken();
 
+    }
+
+    public void takeOutAlleyToken() {
+        try {
+            enterOrLeaveAlley.P();
         } catch (InterruptedException e) {
         }
+        System.out.println("Took out alley token");
     }
 
     public void handInAlleyToken() {
         System.out.println("Handed in alley token");
-        this.enterOrLeaveAlley.V();
+        enterOrLeaveAlley.V();
     }
 
-    public void leave(int no) {
-        try {
-            System.out.println("Took out alley token");
-            this.enterOrLeaveAlley.P();
+    public void leave() {
+
+            takeOutAlleyToken();
             if(carsInAlley == 1) {
                 carDirection = 0;
             }
             carsInAlley--;
-
-        } catch (InterruptedException e) {
-        }
+            handInAlleyToken();
 
     }
 
