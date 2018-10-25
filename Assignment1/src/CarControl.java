@@ -135,7 +135,7 @@ class Conductor extends Thread {
 
 
 				if(inCriticalRegion == true && criticalRegionExits.contains(newpos) && criticalRegionEntrances.contains(curpos)) {
-					_alley.leave();
+					_alley.leave(no);
 					inCriticalRegion = false;
 				}
 
