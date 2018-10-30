@@ -84,11 +84,11 @@ public class Alley {
             enterOrLeaveAlley.P();
         } catch (InterruptedException e) {
         }
-        System.out.println("Took out alley token");
+        //System.out.println("Took out alley token");
     }
 
     public void handInAlleyToken() {
-        System.out.println("Handed in alley token");
+        //System.out.println("Handed in alley token");
         enterOrLeaveAlley.V();
     }
 
