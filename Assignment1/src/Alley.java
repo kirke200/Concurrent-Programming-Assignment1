@@ -1,27 +1,23 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Alley {
 
-    static Semaphore enterOrLeaveAlley;
-    static Semaphore waitingDirection1;
-    static Semaphore waitingDirection2;
+    static Semaphore enterOrLeaveAlley = new Semaphore(1);
+    static Semaphore waitingDirection1= new Semaphore(0);
+    static Semaphore waitingDirection2= new Semaphore(0);
     //carDirection 0 = no direction, 1 = clockwise, 2 = counterclockwise
-    int carDirection;
-    int carsInAlley;
-    int carsWaiting1;
-    int carsWaiting2;
+    static int carDirection = 0;
+    static int carsInAlley = 0;
+    static int carsWaiting1 = 0;
+    static int carsWaiting2 = 0;
+    static ArrayList<Pos> criticalRegionEntrances = new ArrayList<>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
+    static ArrayList<Pos> criticalRegionExits = new ArrayList<>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
 
 
-    public Alley(Semaphore semaphore) {
-        this.enterOrLeaveAlley = semaphore;
-        carsInAlley = 0;
-        carDirection = 0;
-        waitingDirection2 = new Semaphore(0);
-        waitingDirection1 = new Semaphore(0);
-    }
 
-
-    public void enter(int no) {
+    public static void enter(int no) {
         takeOutAlleyToken();
         if (no < 5 && no > 0) {
             if (carDirection == 0) {
@@ -51,10 +47,23 @@ public class Alley {
             }
         }
 
-
     }
 
-    public void takeOutDirectionToken(int carDirection) {
+    public static void enterAlleyIfInFront(Conductor cond) {
+        if(!cond.inCriticalRegion && criticalRegionEntrances.contains(cond.newpos) && !criticalRegionEntrances.contains(cond.curpos)) {
+            Alley.enter(cond.no);
+            cond.inCriticalRegion = true;
+        }
+    }
+
+    public static void leaveAlleyIfExit(Conductor cond) {
+        if(cond.inCriticalRegion && criticalRegionExits.contains(cond.newpos) && criticalRegionEntrances.contains(cond.curpos)) {
+            Alley.leave(cond.no);
+            cond.inCriticalRegion = false;
+        }
+    }
+
+    public static void takeOutDirectionToken(int carDirection) {
         try {
             if (carDirection == 1) {
                 waitingDirection1.P();
@@ -68,7 +77,7 @@ public class Alley {
 
     }
 
-    public void handInDirectionToken(int carDirection) {
+    public static void handInDirectionToken(int carDirection) {
             if (carDirection == 1) {
                 waitingDirection1.V();
             } else {
@@ -79,7 +88,7 @@ public class Alley {
 
     }
 
-    public void takeOutAlleyToken() {
+    public static void takeOutAlleyToken() {
         try {
             enterOrLeaveAlley.P();
         } catch (InterruptedException e) {
@@ -87,13 +96,13 @@ public class Alley {
         //System.out.println("Took out alley token");
     }
 
-    public void handInAlleyToken() {
+
+    public static void handInAlleyToken() {
         //System.out.println("Handed in alley token");
         enterOrLeaveAlley.V();
     }
 
-    public void leave(int no) {
-
+    public static void leave(int no) {
         takeOutAlleyToken();
         if(carsInAlley == 1) {
             carDirection = 0;
