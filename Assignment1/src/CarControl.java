@@ -60,8 +60,7 @@ class Conductor extends Thread {
 	boolean inCriticalRegion = false;
 	Barrier _barrier;
 
-	ArrayList<Pos> barrierEntrance = new ArrayList<>(Arrays.asList(new Pos(4,3), new Pos(4,4), new Pos(4,5), new Pos(4,6), new Pos(4,7)
-			, new Pos(5,8), new Pos(5,9), new Pos(5,10), new Pos(5,11)));
+
 
 
 	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Barrier barrier) {
@@ -140,11 +139,9 @@ class Conductor extends Thread {
 
 				Alley.leaveAlleyIfExit(this);
 
-				if (barrierEntrance.contains(newpos) && Barrier.barrierOn==true){
-					_barrier.sync(no);
+				_barrier.isPosBarrierEntrance(newpos,no);
 
 
-				}
 
 
 				curpos = newpos;
