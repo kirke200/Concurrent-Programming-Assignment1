@@ -56,19 +56,17 @@ class Conductor extends Thread {
 	Pos newpos;                      // New position to go to
 	Semaphore[][] _semaphores;
 	Semaphore _criticalRegion;
-	ArrayList<Pos> criticalRegionEntrances = new ArrayList<>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
-	ArrayList<Pos> criticalRegionExits = new ArrayList<>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
 
 	boolean inCriticalRegion = false;
-	Alley _alley;
 	Barrier _barrier;
 
 	ArrayList<Pos> barrierEntrance = new ArrayList<>(Arrays.asList(new Pos(4,3), new Pos(4,4), new Pos(4,5), new Pos(4,6), new Pos(4,7)
 			, new Pos(5,8), new Pos(5,9), new Pos(5,10), new Pos(5,11)));
 
 
-	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Alley alley, Barrier barrier) {
-		_alley = alley;
+	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Barrier barrier) {
+		ArrayList<Pos> barrierEntrance = new ArrayList<>(Arrays.asList(new Pos(4,3), new Pos(4,4), new Pos(4,5), new Pos(4,6), new Pos(4,7)
+			, new Pos(5,8), new Pos(5,9), new Pos(5,10), new Pos(5,11)));
 		_barrier = barrier;
 		_semaphores = semaphores;
 		_criticalRegion = criticalRegion;
@@ -126,25 +124,21 @@ class Conductor extends Thread {
 
 			while (true) {
 
-				if (atGate(curpos)) { 
+				if (atGate(curpos)) {
 					mygate.pass(); 
 					car.setSpeed(chooseSpeed());
 				}
 
+
 				newpos = nextPos(curpos);
-				if(inCriticalRegion == false && criticalRegionEntrances.contains(newpos) && !criticalRegionEntrances.contains(curpos)) {
-					_alley.enter(no);
-					inCriticalRegion = true;
-				}
+				Alley.enterAlleyIfInFront(this);
+
 				_semaphores[newpos.row][newpos.col].P();
 				car.driveTo(newpos);
 				_semaphores[curpos.row][curpos.col].V();
 
 
-				if(inCriticalRegion == true && criticalRegionExits.contains(newpos) && criticalRegionEntrances.contains(curpos)) {
-					_alley.leave(no);
-					inCriticalRegion = false;
-				}
+				Alley.leaveAlleyIfExit(this);
 
 				if (barrierEntrance.contains(newpos) && Barrier.barrierOn==true){
 					_barrier.sync(no);
@@ -185,7 +179,6 @@ public class CarControl implements CarControlI{
 		gate = new Gate[9];
 		semaphores = new Semaphore[11][12];
 		criticalRegion = new Semaphore(1);
-		alley = new Alley(new Semaphore(1));
 		barrier = new Barrier();
 
 		//Creates array of semaphores for every tile
@@ -197,7 +190,7 @@ public class CarControl implements CarControlI{
 
 		for (int no = 0; no < 9; no++) {
 			gate[no] = new Gate();
-			conductor[no] = new Conductor(no,cd,gate[no], semaphores, criticalRegion, alley, barrier);
+			conductor[no] = new Conductor(no,cd,gate[no], semaphores, criticalRegion, barrier);
 			//Sets the semaphore for the starting position as taken.
 			try
 			{
