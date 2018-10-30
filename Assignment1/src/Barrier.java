@@ -1,18 +1,13 @@
 public class Barrier {
 
     static boolean barrierOn = false;
-    static Semaphore[] barrierSemaphores;
+    static Semaphore[] barrierSemaphores = new Semaphore[9];
 
     public Barrier(){
-        this.barrierSemaphores = new Semaphore[9];
-        for (int i = 0; i < barrierSemaphores.length; i++){
-            barrierSemaphores[i] = new Semaphore(0);
-        }
-
 
     }
 
-    public static void sync(int no){
+    public void sync(int no){
         // Add a semaphore to every car's barrier semaphore except its own.
         for (int j = 0; j < 9 ; j++){
             if (j != no){
@@ -31,7 +26,7 @@ public class Barrier {
 
     }
 
-    public static void on(){
+    public void on(){
         // Resets the semaphores to 0 for every index
         // ER MÅSKE DUMT AT LAVE NYE SEMAPHORE OBJECTER? MEN ER DET BEDRE AT RESETTE DEM MED .P()?
         for (int i = 0; i < barrierSemaphores.length; i++){
@@ -42,7 +37,7 @@ public class Barrier {
 
     }
 
-    public static void off(){
+    public void off(){
         System.out.println("BARRIER OFF");
         barrierOn = false;
         // Puts 9 semaphores into every index of the array to allow waiting cars to proceed.

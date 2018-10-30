@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/CarControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/CarControl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment1/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/Barrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/src/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/CarControl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,12 +70,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2008" />
+          <entry key="java" value="2080" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2008" />
+          <entry key="JAVA" value="2080" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -83,20 +88,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-240">
-              <caret line="149" column="29" lean-forward="true" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
+            <state relative-caret-position="209">
+              <caret line="183" column="27" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="27" />
+              <folding>
+                <element signature="e#5405#5406#0" expanded="true" />
+                <element signature="e#5425#5426#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+            <state relative-caret-position="179">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -113,11 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControlI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#1882#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="15">
+              <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -220,8 +226,8 @@
         <option value="$PROJECT_DIR$/Assignment1/src/TileSemaphores.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Pos.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Alley.java" />
-        <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Semaphore.java" />
+        <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Barrier.java" />
       </list>
     </option>
@@ -287,7 +293,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540478321349" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540895380030" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ConcurrentProgramming" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -335,12 +341,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539158775810</updated>
-      <workItem from="1540590686246" duration="9084000" />
+      <workItem from="1540590686246" duration="12664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14563000" />
+    <option name="totallyTimeSpent" value="18143000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -420,16 +426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControlI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#1882#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarDisplayI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -484,13 +480,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240">
-          <caret line="149" column="29" lean-forward="true" selection-start-line="149" selection-start-column="29" selection-end-line="149" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/Semaphore.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -501,10 +490,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControlI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="38" column="9" lean-forward="true" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+        <state relative-caret-position="179">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="183" column="27" lean-forward="true" selection-start-line="183" selection-start-column="27" selection-end-line="183" selection-end-column="27" />
+          <folding>
+            <element signature="e#5405#5406#0" expanded="true" />
+            <element signature="e#5425#5426#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

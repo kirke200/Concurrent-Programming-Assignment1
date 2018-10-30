@@ -147,7 +147,7 @@ class Conductor extends Thread {
 				}
 
 				if (barrierEntrance.contains(newpos) && Barrier.barrierOn==true){
-					Barrier.sync(no);
+					_barrier.sync(no);
 
 
 				}
@@ -216,15 +216,13 @@ public class CarControl implements CarControlI{
 		gate[no].close();
 	}
 
-	public void barrierOn() { 
-		cd.println("Barrier On not implemented in this version");
-		Barrier.on();
+	public void barrierOn() {
+		barrier.on();
 
 	}
 
-	public void barrierOff() { 
-		cd.println("Barrier Off not implemented in this version");
-		Barrier.off();
+	public void barrierOff() {
+		barrier.off();
 	}
 
 	public void barrierSet(int k) { 
