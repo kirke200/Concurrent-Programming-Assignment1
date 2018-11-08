@@ -1,8 +1,65 @@
 import java.util.Random;
 
 public class Alley {
+    int carDirection;
+    int carsInAlley;
+    int carsWaiting1;
+    int carsWaiting2;
 
-    static Semaphore enterOrLeaveAlley;
+    public Alley() {
+        carsInAlley = 0;
+        carDirection = 0;
+    }
+
+    public synchronized void enter(int no) {
+
+        if(no < 5 && no > 0) {
+            if (carDirection == 0) {
+                carDirection = 1;
+                carsInAlley++;
+            } else if (carDirection == 2) {
+                carsWaiting1++;
+                while (carDirection == 2) try {wait();} catch (InterruptedException e) {}
+            } else {
+                carsInAlley++;
+            }
+
+        }else if (no > 4) {
+
+            if (carDirection == 0) {
+                carDirection = 2;
+                carsInAlley++;
+            } else if (carDirection == 1) {
+                carsWaiting2++;
+                while (carDirection == 1) try {wait();} catch (InterruptedException e) {}
+                carsWaiting2--;
+            } else {
+                carsInAlley++;
+            }
+
+
+
+        }
+
+    }
+
+    public synchronized void leave(int no) {
+
+        if(carsInAlley == 1) {
+            carDirection = 0;
+            carsInAlley = carsInAlley+carsWaiting1;
+            if (carsWaiting2 != 0) {
+                carDirection = 2;
+            } else if (carsWaiting1 != 0) {
+                carDirection = 1;
+            }
+            notifyAll();
+        }
+        carsInAlley--;
+
+    }
+
+    /*static Semaphore enterOrLeaveAlley;
     static Semaphore waitingDirection1;
     static Semaphore waitingDirection2;
     //carDirection 0 = no direction, 1 = clockwise, 2 = counterclockwise
@@ -118,6 +175,6 @@ public class Alley {
         carsInAlley--;
         handInAlleyToken();
 
-    }
+    } */
 
 }
