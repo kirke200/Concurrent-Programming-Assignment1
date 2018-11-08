@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -24,6 +25,7 @@ public class Alley {
             } else if (carDirection == 2) {
                 carsWaiting1++;
                 while (carDirection == 2) try {wait();} catch (InterruptedException e) {}
+                carsWaiting1--;
             } else {
                 carsInAlley++;
             }
@@ -51,7 +53,7 @@ public class Alley {
 
         if(carsInAlley == 1) {
             carDirection = 0;
-            carsInAlley = carsInAlley+carsWaiting1;
+            carsInAlley = carsInAlley+carsWaiting1+carsWaiting2;
             if (carsWaiting2 != 0) {
                 carDirection = 2;
             } else if (carsWaiting1 != 0) {
