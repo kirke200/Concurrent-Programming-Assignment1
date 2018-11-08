@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Alley {
@@ -5,6 +7,8 @@ public class Alley {
     int carsInAlley;
     int carsWaiting1;
     int carsWaiting2;
+    static ArrayList<Pos> criticalRegionEntrances = new ArrayList<>(Arrays.asList(new Pos(1,0), new Pos(8,0), new Pos(9,1), new Pos(9,2)));
+    static ArrayList<Pos> criticalRegionExits = new ArrayList<>(Arrays.asList(new Pos(1,1), new Pos(10,2)));
 
     public Alley() {
         carsInAlley = 0;
@@ -57,6 +61,20 @@ public class Alley {
         }
         carsInAlley--;
 
+    }
+
+    public void enterAlleyIfInFront(Conductor cond) {
+        if(!cond.inCriticalRegion && criticalRegionEntrances.contains(cond.newpos) && !criticalRegionEntrances.contains(cond.curpos)) {
+            enter(cond.no);
+            cond.inCriticalRegion = true;
+        }
+    }
+
+    public void leaveAlleyIfExit(Conductor cond) {
+        if(cond.inCriticalRegion && criticalRegionExits.contains(cond.newpos) && criticalRegionEntrances.contains(cond.curpos)) {
+            leave(cond.no);
+            cond.inCriticalRegion = false;
+        }
     }
 
     /*static Semaphore enterOrLeaveAlley;
