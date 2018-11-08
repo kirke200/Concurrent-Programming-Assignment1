@@ -131,19 +131,14 @@ class Conductor extends Thread {
 				}
 
 				newpos = nextPos(curpos);
-				if(inCriticalRegion == false && criticalRegionEntrances.contains(newpos) && !criticalRegionEntrances.contains(curpos)) {
-					_alley.enter(no);
-					inCriticalRegion = true;
-				}
+				_alley.enterAlleyIfInFront(this);
+
 				_semaphores[newpos.row][newpos.col].P();
 				car.driveTo(newpos);
 				_semaphores[curpos.row][curpos.col].V();
 
 
-				if(inCriticalRegion == true && criticalRegionExits.contains(newpos) && criticalRegionEntrances.contains(curpos)) {
-					_alley.leave(no);
-					inCriticalRegion = false;
-				}
+				_alley.leaveAlleyIfExit(this);
 
 				//_barrier.isPosBarrierEntrance(newpos,no);
 				_barrier.isPosBarrierEntrance(newpos);
@@ -183,7 +178,7 @@ public class CarControl implements CarControlI{
 		gate = new Gate[9];
 		semaphores = new Semaphore[11][12];
 		criticalRegion = new Semaphore(1);
-		alley = new Alley(new Semaphore(1));
+		alley = new Alley();
 		barrier = new Barrier();
 
 		//Creates array of semaphores for every tile
