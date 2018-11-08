@@ -145,7 +145,8 @@ class Conductor extends Thread {
 					inCriticalRegion = false;
 				}
 
-				_barrier.isPosBarrierEntrance(newpos,no);
+				//_barrier.isPosBarrierEntrance(newpos,no);
+				_barrier.isPosBarrierEntrance(newpos);
 
 
 
