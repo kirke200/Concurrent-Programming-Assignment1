@@ -59,13 +59,13 @@ public class Barrier {
     public synchronized void barrierThreshold(int n){
         if (n <= ncars) { // change immediately when threshold isn't increased.
             ncars = n;
-            if (K<=ncars) { // allow cars waiting to be released in case the threshold is changed to equal or less to the amount of cars waiting.
-                sync();
+            if (K>=ncars) { // allow cars waiting to be released in case the threshold is changed to equal or less than the amount of cars waiting
+                OK = true;
+                notifyAll();
             }
         }
-        else { // if k>ncars
-            while (K!=0) {
-                System.out.println("Enter while loop");
+        else { // if K>ncars
+            while (K!=0) { // blocks the barrierThreshold call until all cars have been released before updating the INCREASED threshold.
                 try {
                     wait();
                 } catch (InterruptedException e) {}
