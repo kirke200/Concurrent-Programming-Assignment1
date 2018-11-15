@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment1/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/Barrier.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,12 +65,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3048" />
+          <entry key="java" value="3157" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3048" />
+          <entry key="JAVA" value="3157" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -90,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="225" column="72" lean-forward="true" selection-start-line="225" selection-start-column="72" selection-end-line="225" selection-end-column="72" />
+            <state relative-caret-position="435">
+              <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
               <folding>
                 <element signature="e#2277#2278#0" expanded="true" />
                 <element signature="e#2302#2303#0" expanded="true" />
@@ -119,8 +118,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+            <state relative-caret-position="314">
+              <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -354,7 +353,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30999000" />
+    <option name="totallyTimeSpent" value="32060000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -507,8 +506,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="225" column="72" lean-forward="true" selection-start-line="225" selection-start-column="72" selection-end-line="225" selection-end-column="72" />
+        <state relative-caret-position="435">
+          <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
           <folding>
             <element signature="e#2277#2278#0" expanded="true" />
             <element signature="e#2302#2303#0" expanded="true" />
@@ -522,8 +521,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="314">
+          <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -23,7 +23,7 @@ public class Barrier {
         while (OK)
             try {wait();} catch (InterruptedException e) {}
         K++;
-        if (K >= ncars) { // If all cars are waiting at the barrier. !!!!!! WAS == instead of >=
+        if (K >= ncars) { // If more or same amount of cars are waiting as the threshold level
             OK = true;
             notifyAll();
         }
@@ -60,8 +60,8 @@ public class Barrier {
         if (n <= ncars) { // change immediately when threshold isn't increased.
             ncars = n;
             if (K>=ncars) { // allow cars waiting to be released in case the threshold is changed to equal or less than the amount of cars waiting
-                OK = true;
-                notifyAll();
+                OK = false;
+                sync();
             }
         }
         else { // if K>ncars
