@@ -62,6 +62,8 @@ class Conductor extends Thread {
 	boolean inCriticalRegion = false;
 	Alley _alley;
 	Barrier _barrier;
+	CarI thisCar;
+	Semaphore stopped;
 
 
 
@@ -76,6 +78,7 @@ class Conductor extends Thread {
 		mygate = g;
 		startpos = cd.getStartPos(no);
 		barpos   = cd.getBarrierPos(no);  // For later use
+		stopped = new Semaphore(0);
 
 
 		col = chooseColor();
@@ -104,6 +107,15 @@ class Conductor extends Thread {
 		return factor*basespeed;
 	}
 
+
+	public CarI getCar() {
+		return thisCar;
+	}
+
+	public void setCar(CarI car) {
+		this.thisCar = car;
+	}
+
 	Color chooseColor() { 
 		return Color.blue; // You can get any color, as longs as it's blue 
 	}
@@ -119,34 +131,47 @@ class Conductor extends Thread {
 
 	public void run() {
 		try {
-			CarI car = cd.newCar(no, col, startpos);
+			setCar(cd.newCar(no, col, startpos));
 			curpos = startpos;
-			cd.register(car);
+			cd.register(thisCar);
 
 			while (true) {
 
+
 				if (atGate(curpos)) { 
 					mygate.pass(); 
-					car.setSpeed(chooseSpeed());
+					thisCar.setSpeed(chooseSpeed());
 				}
 
 				newpos = nextPos(curpos);
 				_alley.enterAlleyIfInFront(this);
-
+				try {
 				_semaphores[newpos.row][newpos.col].P();
-				car.driveTo(newpos);
-				_semaphores[curpos.row][curpos.col].V();
+				} catch (InterruptedException e) {
+					_semaphores[curpos.row][curpos.col].V();
+					stopped.P();
+					System.out.println(curpos + " " + startpos);
+					continue;
+				}
+				try {
+					thisCar.driveTo(newpos);
+				} catch (InterruptedException e) {
+					_semaphores[curpos.row][curpos.col].V();
+					_semaphores[newpos.row][newpos.col].V();
+					stopped.P();
+					System.out.println(curpos + " " + startpos);
+					continue;
+				}
+					_semaphores[curpos.row][curpos.col].V();
+					_alley.leaveAlleyIfExit(this);
+
+					//_barrier.isPosBarrierEntrance(newpos,no);
+					_barrier.isPosBarrierEntrance(newpos);
 
 
-				_alley.leaveAlleyIfExit(this);
-
-				//_barrier.isPosBarrierEntrance(newpos,no);
-				_barrier.isPosBarrierEntrance(newpos);
+					curpos = newpos;
 
 
-
-
-				curpos = newpos;
 
 
 
@@ -205,9 +230,7 @@ public class CarControl implements CarControlI{
 		gate[no].open();
 	}
 
-	public void stopCar(int no) {
-		gate[no].close();
-	}
+	public void stopCar(int no) { gate[no].close(); }
 
 	public void barrierOn() {
 		barrier.on();
@@ -225,11 +248,13 @@ public class CarControl implements CarControlI{
 		try { Thread.sleep(3000); } catch (InterruptedException e) { }
 	}
 
-	public void removeCar(int no) { 
+	public void removeCar(int no) {
+		RemovingCars.removeCar(no, this);
 		cd.println("Remove Car not implemented in this version");
 	}
 
 	public void restoreCar(int no) { 
+		RemovingCars.restoreCar(no,this);
 		cd.println("Restore Car not implemented in this version");
 	}
 

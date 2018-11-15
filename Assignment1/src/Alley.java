@@ -50,8 +50,8 @@ public class Alley {
     }
 
     public synchronized void leave(int no) {
-
         if(carsInAlley == 1) {
+            System.out.println("Car leaving");
             carDirection = 0;
             carsInAlley = carsInAlley+carsWaiting1+carsWaiting2;
             if (carsWaiting2 != 0) {
