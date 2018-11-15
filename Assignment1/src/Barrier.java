@@ -18,12 +18,12 @@ public class Barrier {
         K = 0;
 
     }
-    // with inspiration from barrier monitor (Synchronization mechanisms).
+    // with inspiration from barrier monitor in  Synchronization mechanisms.
     public synchronized void sync() {
         while (OK)
             try {wait();} catch (InterruptedException e) {}
         K++;
-        if (K == ncars) { // If all cars are waiting at the barrier.
+        if (K >= ncars) { // If all cars are waiting at the barrier. !!!!!! WAS == instead of >=
             OK = true;
             notifyAll();
         }
@@ -53,9 +53,27 @@ public class Barrier {
         if (barrierEntrance.contains(pos) && barrierOn==true){
             sync();
 
-
         }
     }
+
+    public synchronized void barrierThreshold(int n){
+        if (n <= ncars) { // change immediately when threshold isn't increased.
+            ncars = n;
+            if (K<=ncars) { // allow cars waiting to be released in case the threshold is changed to equal or less to the amount of cars waiting.
+                sync();
+            }
+        }
+        else { // if k>ncars
+            while (K!=0) {
+                System.out.println("Enter while loop");
+                try {
+                    wait();
+                } catch (InterruptedException e) {}
+            }
+            ncars = n;
+        }
+    }
+
 }
 
 
