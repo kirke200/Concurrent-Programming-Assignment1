@@ -10,12 +10,10 @@ public class Barrier {
 
     static Semaphore thresholdSemaphore = new Semaphore(1);
     int threshold = 9;
-    //int ncars = 9;
     int noOfCarsWaiting = 0;
     int[] carsAtBarrier = new int[9];
-    static Semaphore anyCarsAtBarrier = new Semaphore(0);
     boolean increaseThreshold = false;
-    int tempThreshold, waitingToWait;
+    int tempThreshold;
     static Semaphore tempSemaphore = new Semaphore(0);
     boolean notFirstCar = false;
     static Semaphore nextCar = new Semaphore(0);
@@ -28,10 +26,11 @@ public class Barrier {
     }
 
     public void sync(int no){
+        // Enter critical section
         takeEnterOrLeaveToken();
         noOfCarsWaiting++;
-        System.out.println("Car entered " + no);
         carsAtBarrier[no] = 1;
+        // Leave critical section
         handInEnterOrLeaveToken();
 
         // Add a semaphore to every car's barrier semaphore except its own.
@@ -41,92 +40,77 @@ public class Barrier {
             }
         }
         try {
-        // Waits until it can pick up all 8 semaphores before allowed passing the barrier.
+        // Waits until it can pick up the amount of threshold-1 semaphores before allowed passing the barrier.
         for (int i = 0; i < threshold-1 ; i++){
             barrierSemaphores[no].P();
-            //System.out.println("Car number " + no + " picked up " + i );
         }
         } catch (InterruptedException e) {
         }
+
         takeFirstCarToken();
+        // If it's not the first car to leave, wait until allowed to leave the barrier.
         if (notFirstCar) {
             handInFirstCarToken();
-            try {
-                nextCar.P();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            takeNextCarToken();
 
-        } else {
+        } else { // If first car to leave
             notFirstCar = true;
             handInFirstCarToken();
+            // Take the EnterOrLeaveToken to ensure that cars arriving at the barrier before the cars have left are
+            // forced to wait until they can wait at the barrier
             takeEnterOrLeaveToken();
         }
 
         noOfCarsWaiting--;
+        // Allow for increase in threshold if last car to leave.
         if(increaseThreshold && noOfCarsWaiting == 0){
             threshold = tempThreshold;
             increaseThreshold = false;
             tempSemaphore.V();
 
         }
-        System.out.println("Cars waiting: " + noOfCarsWaiting);
 
-        // If last car to leave, then reset semaphores for all cars (active or inactive)
-//        if (noOfCarsWaiting==0) {
+        // If last car to leave, then reset semaphores for all cars that was not waiting at the barrier + itself.
             for (int i = 0; i < carsAtBarrier.length; i++) {
-                //if (carsAtBarrier[i] == 0){
                 if (carsAtBarrier[i] == 0 || i == no)
                     barrierSemaphores[i] = new Semaphore(0);
-                //}
             }
-   //     }
         carsAtBarrier[no]=0;
 
-        // last car to leave the barrier changes the threshold
-       /* if(increaseThreshold && noOfCarsWaiting==0){
-            threshold = tempThreshold;
-            increaseThreshold = false;
-            tempSemaphore.V();
-        }*/
-       if (noOfCarsWaiting == 0) {
+       if (noOfCarsWaiting == 0) { // if last car
            notFirstCar = false;
+           // Allow the witheld cars at the barrier to enter the waiting state for barrier.
            handInEnterOrLeaveToken();
-       } else {
-           nextCar.V();
+       } else { // if not last car.
+           handInNextCarToken();
        }
 
 
 
     }
-
+    // Turn barrier on
     public void on() {
         // Resets the semaphores to 0 for every index
-        // ER MÅSKE DUMT AT LAVE NYE SEMAPHORE OBJECTER? MEN ER DET BEDRE AT RESETTE DEM MED .P()?
         if (!barrierOn) {
             for (int i = 0; i < barrierSemaphores.length; i++) {
                 barrierSemaphores[i] = new Semaphore(0);
             }
-
             barrierOn = true;
-
         }
     }
-
+    // Turn barrier off
     public void off(){
         if(barrierOn) {
-            System.out.println("BARRIER OFF");
             barrierOn = false;
-            // Puts 9 semaphores into every index of the array to allow waiting cars to proceed.
+            // Puts semaphores into every index of the array to allow waiting cars to proceed.
             for (int j = 0; j < 9; j++) {
                 for (int i = 0; i < 9; i++) {
                     barrierSemaphores[j].V();
                 }
             }
-            System.out.println(String.valueOf(barrierOn));
-            //for ( sem in )
         }
     }
+    // Checks if a car is at the barrier and if the barrier is active
     public void isPosBarrierEntrance(Pos pos, int no){
         if (barrierEntrance.contains(pos) && barrierOn){
             sync(no);
@@ -135,39 +119,10 @@ public class Barrier {
         }
     }
 
-    public void takeEnterOrLeaveToken() {
-        try {
-            thresholdSemaphore.P();
-        } catch (InterruptedException e) {
-        }
-        System.out.println("Took Token");
-    }
-
-    public void handInEnterOrLeaveToken() {
-            thresholdSemaphore.V();
-            System.out.println("Handed in token");
-
-    }
-
-    public void takeFirstCarToken() {
-        try {
-            firstCarSemaphore.P();
-        } catch (InterruptedException e) {
-        }
-        System.out.println("Took Token");
-    }
-
-    public void handInFirstCarToken() {
-        firstCarSemaphore.V();
-        System.out.println("Handed in token");
-
-    }
-
-
 
     public void barrierThreshold(int n) {
         takeEnterOrLeaveToken();
-        // Change immdiately if no cars are waiting.
+        // Change immediately if no cars are waiting.
         if (noOfCarsWaiting==0) {
             threshold = n;
             for (int i = 0; i < carsAtBarrier.length; i++){
@@ -177,7 +132,6 @@ public class Barrier {
         }
 
         else if(n==threshold){
-            // Do nothing
             handInEnterOrLeaveToken();
         }
 
@@ -185,31 +139,16 @@ public class Barrier {
             System.out.println("Decrease threshold");
             threshold = n;
             if (noOfCarsWaiting>=threshold){
-                // Add a semaphore to "activate" the cars
+                // Add a semaphore to "activate" the cars waiting at the barrier
                 for (int i = 0; i < carsAtBarrier.length; i++){
                     if (carsAtBarrier[i] == 1)
                         barrierSemaphores[i].V();
-                    // Reset the semaphore count to 0 for those not waiting at barrier.
-                    /*if (carsAtBarrier[i] == 0){
-                        barrierSemaphores[i] = new Semaphore(0);
-                    }*/
                 }
-                /*for (int i = 0; i < carsAtBarrier.length; i++){
-                    barrierSemaphores[i] = new Semaphore(0);
-                }*/
-
             }
-
             handInEnterOrLeaveToken();
         }
 
-        else{
-
-           /* if (noOfCarsWaiting == 0) {
-                threshold = n;
-                handInEnterOrLeaveToken();
-            }
-            else {*/
+        else{ // If threshold is to be increased
                 tempThreshold = n;
                 increaseThreshold = true;
                 handInEnterOrLeaveToken();
@@ -217,19 +156,41 @@ public class Barrier {
                     tempSemaphore.P();
                 } catch (InterruptedException e) {
                 }
-
-
-            //}
-            /*if(noOfCarsWaiting!=0){
-                handInEnterOrLeaveToken();
-            }
-            else if (noOfCarsWaiting == 0) {
-                threshold=n;
-                handInEnterOrLeaveToken();
-
-            }*/
-
         }
+    }
 
+// Methods to enter and leave different critical sections
+
+    public void takeEnterOrLeaveToken() {
+        try {
+            thresholdSemaphore.P();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public void handInEnterOrLeaveToken() {
+        thresholdSemaphore.V();
+    }
+
+    public void takeFirstCarToken() {
+        try {
+            firstCarSemaphore.P();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public void handInFirstCarToken() {
+        firstCarSemaphore.V();
+    }
+
+    public void takeNextCarToken() {
+        try {
+            nextCar.P();
+        } catch (InterruptedException e) {
+        }
+    }
+
+    public void handInNextCarToken() {
+        nextCar.V();
     }
 }

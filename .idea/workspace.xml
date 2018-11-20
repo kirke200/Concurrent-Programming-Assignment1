@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/CarControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/CarControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment1/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/Barrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment1/src/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/CarControl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,12 +65,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5705" />
+          <entry key="java" value="6750" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5705" />
+          <entry key="JAVA" value="6750" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -88,11 +83,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="217" column="35" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+            <state relative-caret-position="390">
+              <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
               <folding>
                 <element signature="e#2201#2202#0" expanded="true" />
                 <element signature="e#2226#2227#0" expanded="true" />
@@ -123,13 +118,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+            <state relative-caret-position="344">
+              <caret line="186" column="24" lean-forward="true" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5344#5345#0" expanded="true" />
+                <element signature="e#5382#5383#0" expanded="true" />
+                <element signature="e#5570#5571#0" expanded="true" />
+                <element signature="e#5607#5608#0" expanded="true" />
+                <element signature="e#5783#5784#0" expanded="true" />
+                <element signature="e#5810#5811#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -234,6 +235,7 @@
       <find>barrie</find>
       <find>barrier</find>
       <find>speed</find>
+      <find>nextCar</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -246,8 +248,8 @@
         <option value="$PROJECT_DIR$/Assignment1/src/Pos.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Alley.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Semaphore.java" />
-        <option value="$PROJECT_DIR$/Assignment1/src/Barrier.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
+        <option value="$PROJECT_DIR$/Assignment1/src/Barrier.java" />
       </list>
     </option>
   </component>
@@ -312,7 +314,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542728848135" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542730794548" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ConcurrentProgramming" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -365,7 +367,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49569000" />
+    <option name="totallyTimeSpent" value="51451000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -512,20 +514,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="217" column="35" selection-start-line="217" selection-start-column="35" selection-end-line="217" selection-end-column="35" />
+        <state relative-caret-position="390">
+          <caret line="237" column="17" selection-start-line="237" selection-start-column="17" selection-end-line="237" selection-end-column="17" />
           <folding>
             <element signature="e#2201#2202#0" expanded="true" />
             <element signature="e#2226#2227#0" expanded="true" />
@@ -539,6 +531,22 @@
             <element signature="e#4667#4668#0" expanded="true" />
             <element signature="e#4744#4745#0" expanded="true" />
             <element signature="e#4764#4765#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="186" column="24" lean-forward="true" selection-start-line="186" selection-start-column="24" selection-end-line="186" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5344#5345#0" expanded="true" />
+            <element signature="e#5382#5383#0" expanded="true" />
+            <element signature="e#5570#5571#0" expanded="true" />
+            <element signature="e#5607#5608#0" expanded="true" />
+            <element signature="e#5783#5784#0" expanded="true" />
+            <element signature="e#5810#5811#0" expanded="true" />
           </folding>
         </state>
       </provider>
