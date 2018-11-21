@@ -219,11 +219,7 @@ public class CarControl implements CarControlI{
 	}
 
 	public void barrierSet(int k) {
-		cd.println("Barrier threshold setting not implemented in this version");
-		// This sleep is solely for illustrating how blocking affects the GUI
-		// Remove when feature is properly implemented.
 		barrier.barrierThreshold(k);
-		//try { Thread.sleep(3000); } catch (InterruptedException e) { }
 	}
 
 	public void removeCar(int no) { 
