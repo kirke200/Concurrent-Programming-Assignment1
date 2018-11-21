@@ -27,11 +27,10 @@ public class Alley {
                 while (carDirection == 2) try {
                     wait();
                 } catch (InterruptedException e) {
-                    if (cond.removed) {
+                    if (cond.removed && !cond.newStart) {
                         System.out.println("Removed car in front of alley");
                         carsWaiting1--;
                         throw new InterruptedException();
-
                     }
 
                 }
@@ -49,7 +48,13 @@ public class Alley {
                 carsWaiting2++;
                 while (carDirection == 1) try {
                     wait();
-                } catch (InterruptedException e) {}
+                } catch (InterruptedException e) {
+                    if (cond.removed && !cond.newStart) {
+                        System.out.println("Removed car in front of alley");
+                        carsWaiting2--;
+                        throw new InterruptedException();
+                    }
+                }
                 carsWaiting2--;
             } else {
                 carsInAlley++;

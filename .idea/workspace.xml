@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/src/Alley.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/Alley.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment1/src/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/CarControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assignment1/src/RemovingCars.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/RemovingCars.java" afterDir="false" />
     </list>
@@ -31,25 +32,25 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="iml" value="1" />
-          <entry key="java" value="14" />
+          <entry key="java" value="15" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="15" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="7148" />
+          <entry key="java" value="7540" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7148" />
+          <entry key="JAVA" value="7540" />
         </counts>
       </usages-collector>
     </session>
@@ -92,8 +93,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+            <state relative-caret-position="-347">
+              <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
               <folding>
                 <element signature="e#2560#2561#0" expanded="true" />
                 <element signature="e#2585#2586#0" expanded="true" />
@@ -125,8 +126,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/RemovingCars.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+            <state relative-caret-position="612">
+              <caret line="36" column="118" selection-start-line="36" selection-start-column="118" selection-end-line="36" selection-end-column="118" />
               <folding>
                 <element signature="e#120#121#0" expanded="true" />
                 <element signature="e#139#140#0" expanded="true" />
@@ -138,8 +139,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Alley.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+            <state relative-caret-position="10">
+              <caret line="51" column="54" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -193,6 +194,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assignment1/src/Semaphore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="271">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#575#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Cars.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
@@ -201,18 +214,6 @@
                 <element signature="e#0#48695#0" expanded="true" />
                 <element signature="e#35616#35617#0" expanded="true" />
                 <element signature="e#35655#35656#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment1/src/CarTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="38" column="13" lean-forward="true" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#1226#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -250,12 +251,18 @@
       <find>semapho</find>
       <find>col</find>
       <find>try</find>
-      <find>removed car</find>
       <find>driveTo</find>
       <find>illegal drive</find>
       <find>newCar</find>
       <find>sleeping</find>
       <find>restored</find>
+      <find>BASESPE</find>
+      <find>startpos</find>
+      <find>base</find>
+      <find>remove</find>
+      <find>removed car</find>
+      <find>removed =</find>
+      <find>removed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -269,8 +276,8 @@
         <option value="$PROJECT_DIR$/Assignment1/src/Semaphore.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Barrier.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Alley.java" />
-        <option value="$PROJECT_DIR$/Assignment1/src/RemovingCars.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
+        <option value="$PROJECT_DIR$/Assignment1/src/RemovingCars.java" />
       </list>
     </option>
   </component>
@@ -321,7 +328,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542818241420" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542820725232" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ConcurrentProgramming" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -388,7 +395,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.1977612" />
@@ -500,16 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/Semaphore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#575#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControlI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-51">
@@ -552,17 +549,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/Semaphore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="e#0#575#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/Alley.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="10">
+          <caret line="51" column="54" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/RemovingCars.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        <state relative-caret-position="612">
+          <caret line="36" column="118" selection-start-line="36" selection-start-column="118" selection-end-line="36" selection-end-column="118" />
           <folding>
             <element signature="e#120#121#0" expanded="true" />
             <element signature="e#139#140#0" expanded="true" />
@@ -572,8 +579,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+        <state relative-caret-position="-347">
+          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
           <folding>
             <element signature="e#2560#2561#0" expanded="true" />
             <element signature="e#2585#2586#0" expanded="true" />

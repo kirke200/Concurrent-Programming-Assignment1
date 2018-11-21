@@ -40,8 +40,9 @@ class Gate {
 class Conductor extends Thread {
 
 	final static int steps = 10;
+	public boolean newStart = false;
 
-	double basespeed = -1.0;          // Tiles per second
+	double basespeed = 6.0;          // Tiles per second
 	double variation =  50;          // Percentage of base speed
 
 	CarDisplayI cd;                  // GUI part
@@ -145,13 +146,23 @@ class Conductor extends Thread {
 
 	public void run() {
 		try {
+			if (this.newStart) {
+				if (inCriticalRegion) {
+					_alley.enter(no,this);
+				}
+				System.out.println(startpos);
+				getSemaphoreTokenFromPos(startpos);
+				this.newStart = false;
+			}
 			setCar(cd.newCar(no, col, startpos));
 			curpos = startpos;
 			cd.register(thisCar);
 
 			W : while (true) {
 
+
 				try {
+
 				if (atGate(curpos)) { 
 					mygate.pass(); 
 					thisCar.setSpeed(chooseSpeed());
@@ -187,6 +198,7 @@ class Conductor extends Thread {
 				_alley.leave(no);
 			}
 			this.sleeping = true;
+			this.removed = true;
 			System.out.println("Car "+no+" removed");
 
 		} catch (Exception e) {
