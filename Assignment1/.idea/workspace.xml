@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="099daad7-0d1e-4daf-ba6c-fd5631e60774" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/RemovingCars.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output/production/Assignment1/Alley.class" beforeDir="false" afterPath="$PROJECT_DIR$/Output/production/Assignment1/Alley.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output/production/Assignment1/CarControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/Output/production/Assignment1/CarControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output/production/Assignment1/Conductor.class" beforeDir="false" afterPath="$PROJECT_DIR$/Output/production/Assignment1/Conductor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alley.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alley.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CarControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarControl.java" afterDir="false" />
-    </list>
+    <list default="true" id="099daad7-0d1e-4daf-ba6c-fd5631e60774" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +12,7 @@
     <session id="-1470412475">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -201,7 +194,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542292112242" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542303068277" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -260,7 +253,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
