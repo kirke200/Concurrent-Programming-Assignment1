@@ -42,14 +42,19 @@ public class Barrier {
     }
 
     public synchronized void on(){
-        OK = false;
-        barrierOn = true;
+        if(!barrierOn){
+            OK = false;
+            barrierOn = true;
+        }
+
     }
 
     public synchronized void off(){
-        barrierOn = false;
-        OK = true;
-        notifyAll();
+        if(barrierOn) {
+            barrierOn = false;
+            OK = true;
+            notifyAll();
+        }
     }
 
     public synchronized void isPosBarrierEntrance(Pos pos){
