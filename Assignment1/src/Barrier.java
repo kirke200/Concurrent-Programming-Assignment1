@@ -43,7 +43,6 @@ public class Barrier {
     }
 
     public synchronized void off(){
-        System.out.println("Barrier off!");
         barrierOn = false;
         OK = true;
         notifyAll();
