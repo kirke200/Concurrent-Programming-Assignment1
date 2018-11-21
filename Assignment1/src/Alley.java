@@ -21,12 +21,12 @@ public class Alley {
     public synchronized void enter(int no) {
 
         if(no < 5 && no > 0) {
-            if (carDirection == 0) {
+            if (carDirection == 0 && !checkIfCarsThrough(no)) {
                 carDirection = 1;
                 carsInAlley++;
-            } else if (carDirection == 2) {
+            } else if (carDirection == 2 || checkIfCarsThrough(no)) {
                 carsWaiting1++;
-                while (carDirection == 2) try {wait();} catch (InterruptedException e) {}
+                while (carDirection == 2 || checkIfCarsThrough(no)) try {wait();} catch (InterruptedException e) {}
                 carsWaiting1--;
             } else {
                 carsInAlley++;
@@ -34,12 +34,12 @@ public class Alley {
             carsGoneThrough[no-1] = true;
         }else if (no > 4) {
 
-            if (carDirection == 0) {
+            if (carDirection == 0 && !checkIfCarsThrough(no)) {
                 carDirection = 2;
                 carsInAlley++;
-            } else if (carDirection == 1) {
+            } else if (carDirection == 1 || checkIfCarsThrough(no)) {
                 carsWaiting2++;
-                while (carDirection == 1) try {wait();} catch (InterruptedException e) {}
+                while (carDirection == 1 || checkIfCarsThrough(no)) try {wait();} catch (InterruptedException e) {}
                 carsWaiting2--;
             } else {
                 carsInAlley++;
@@ -69,21 +69,29 @@ public class Alley {
     }
 
     public synchronized void leave(int no) {
-        System.out.println(Arrays.toString(carsGoneThrough));
-        System.out.println(checkIfCarsThrough(no));
         if(carsInAlley == 1 && checkIfCarsThrough(no)) {
-            if (otherDirectionThrough(no)) {
-                carDirection = 0;
+
+            if (no < 5) {
+                carDirection = 2;
             } else {
-                if (no < 5) {
-                    carDirection = 2;
-                } else {
-                    carDirection = 1;
+                carDirection = 1;
+            }
+            System.out.println("Changed direction2");
+
+
+            if (checkIfCarsThrough(1) && checkIfCarsThrough(5)) {
+                for (int i = 0; i < carsGoneThrough.length; i++) {
+                    carsGoneThrough[i] = false;
                 }
             }
-            System.out.println("Notified all");
+            if (no < 5) {
+                carsInAlley = carsInAlley+carsWaiting2;
+            } else {
+                carsInAlley = carsInAlley+carsWaiting1;
+            }
             notifyAll();
-            carsInAlley = carsInAlley+carsWaiting1+carsWaiting2;
+            System.out.println("Notified all");
+
 
             /*if (carsWaiting2 != 0) {
                 carDirection = 2;
@@ -92,11 +100,8 @@ public class Alley {
             }*/
 
         }
-        if (checkIfCarsThrough(1) && checkIfCarsThrough(5)) {
-            for (int i = 0; i < carsGoneThrough.length; i++) {
-                carsGoneThrough[i] = false;
-            }
-        }
+        System.out.println(Arrays.toString(carsGoneThrough));
+        System.out.println(checkIfCarsThrough(no));
         carsInAlley--;
 
     }

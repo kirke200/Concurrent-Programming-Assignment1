@@ -41,7 +41,7 @@ class Conductor extends Thread {
 
 	final static int steps = 10;
 
-	double basespeed = 6.0;          // Tiles per second
+	double basespeed = -1;          // Tiles per second
 	double variation =  50;          // Percentage of base speed
 
 	CarDisplayI cd;                  // GUI part
