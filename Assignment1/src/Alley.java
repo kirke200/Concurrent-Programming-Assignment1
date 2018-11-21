@@ -16,7 +16,7 @@ public class Alley {
         carDirection = 0;
     }
 
-    public synchronized void enter(int no) {
+    public synchronized void enter(int no, Conductor cond ) throws InterruptedException {
 
         if(no < 5 && no > 0) {
             if (carDirection == 0) {
@@ -24,7 +24,17 @@ public class Alley {
                 carsInAlley++;
             } else if (carDirection == 2) {
                 carsWaiting1++;
-                while (carDirection == 2) try {wait();} catch (InterruptedException e) {}
+                while (carDirection == 2) try {
+                    wait();
+                } catch (InterruptedException e) {
+                    if (cond.removed) {
+                        System.out.println("Removed car in front of alley");
+                        carsWaiting1--;
+                        throw new InterruptedException();
+
+                    }
+
+                }
                 carsWaiting1--;
             } else {
                 carsInAlley++;
@@ -37,7 +47,9 @@ public class Alley {
                 carsInAlley++;
             } else if (carDirection == 1) {
                 carsWaiting2++;
-                while (carDirection == 1) try {wait();} catch (InterruptedException e) {}
+                while (carDirection == 1) try {
+                    wait();
+                } catch (InterruptedException e) {}
                 carsWaiting2--;
             } else {
                 carsInAlley++;
@@ -65,9 +77,9 @@ public class Alley {
 
     }
 
-    public void enterAlleyIfInFront(Conductor cond) {
+    public void enterAlleyIfInFront(Conductor cond) throws InterruptedException {
         if(!cond.inCriticalRegion && criticalRegionEntrances.contains(cond.newpos) && !criticalRegionEntrances.contains(cond.curpos)) {
-            enter(cond.no);
+            enter(cond.no, cond);
             cond.inCriticalRegion = true;
         }
     }

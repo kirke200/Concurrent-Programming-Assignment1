@@ -64,11 +64,16 @@ class Conductor extends Thread {
 	Barrier _barrier;
 	CarI thisCar;
 	Semaphore stopped;
+	boolean removed;
+	boolean restorationUnderway = false;
+	boolean sleeping = false;
+	Semaphore removeSemaphore = new Semaphore(1);
+	RemovingCars _removingCars;
 
 
 
 
-	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Alley alley, Barrier barrier) {
+	public Conductor(int no, CarDisplayI cd, Gate g, Semaphore[][] semaphores, Semaphore criticalRegion, Alley alley, Barrier barrier, RemovingCars removingCars) {
 		_alley = alley;
 		_barrier = barrier;
 		_semaphores = semaphores;
@@ -79,6 +84,7 @@ class Conductor extends Thread {
 		startpos = cd.getStartPos(no);
 		barpos   = cd.getBarrierPos(no);  // For later use
 		stopped = new Semaphore(0);
+		_removingCars = removingCars;
 
 
 		col = chooseColor();
@@ -129,6 +135,14 @@ class Conductor extends Thread {
 		return pos.equals(startpos);
 	}
 
+	public void getSemaphoreTokenFromPos(Pos pos) throws InterruptedException {
+		_semaphores[pos.row][pos.col].P();
+	}
+
+	public void giveSemaphoreTokenFromPos(Pos pos) {
+		_semaphores[pos.row][pos.col].V();
+	}
+
 	public void run() {
 		try {
 			setCar(cd.newCar(no, col, startpos));
@@ -137,29 +151,30 @@ class Conductor extends Thread {
 
 			while (true) {
 
-
+				try {
 				if (atGate(curpos)) { 
 					mygate.pass(); 
 					thisCar.setSpeed(chooseSpeed());
 				}
 
 				newpos = nextPos(curpos);
-				_alley.enterAlleyIfInFront(this);
-				try {
-				_semaphores[newpos.row][newpos.col].P();
+
+
+					_alley.enterAlleyIfInFront(this);
+					getSemaphoreTokenFromPos(newpos);
 				} catch (InterruptedException e) {
-					_semaphores[curpos.row][curpos.col].V();
-					stopped.P();
-					System.out.println(curpos + " " + startpos);
+					giveSemaphoreTokenFromPos(curpos);
+					_removingCars.waitForReactivation(this);
+					cd.println("Car "+no+" restored");
 					continue;
 				}
 				try {
 					thisCar.driveTo(newpos);
 				} catch (InterruptedException e) {
-					_semaphores[curpos.row][curpos.col].V();
-					_semaphores[newpos.row][newpos.col].V();
-					stopped.P();
-					System.out.println(curpos + " " + startpos);
+					giveSemaphoreTokenFromPos(curpos);
+					giveSemaphoreTokenFromPos(newpos);
+					_removingCars.waitForReactivation(this);
+					cd.println("Car "+no+" restored");
 					continue;
 				}
 					_semaphores[curpos.row][curpos.col].V();
@@ -185,6 +200,11 @@ class Conductor extends Thread {
 		}
 	}
 
+
+	public synchronized void notifyCars() {
+		notifyAll();
+	}
+
 }
 
 public class CarControl implements CarControlI{
@@ -196,6 +216,7 @@ public class CarControl implements CarControlI{
 	Semaphore criticalRegion;
 	Alley alley;
 	Barrier barrier;
+	RemovingCars removingCars = new RemovingCars();
 
 	public CarControl(CarDisplayI cd) {
 		this.cd = cd;
@@ -215,7 +236,7 @@ public class CarControl implements CarControlI{
 
 		for (int no = 0; no < 9; no++) {
 			gate[no] = new Gate();
-			conductor[no] = new Conductor(no,cd,gate[no], semaphores, criticalRegion, alley, barrier);
+			conductor[no] = new Conductor(no,cd,gate[no], semaphores, criticalRegion, alley, barrier, removingCars);
 			//Sets the semaphore for the starting position as taken.
 			try
 			{
@@ -249,13 +270,11 @@ public class CarControl implements CarControlI{
 	}
 
 	public void removeCar(int no) {
-		RemovingCars.removeCar(no, this);
-		cd.println("Remove Car not implemented in this version");
+		removingCars.removeCar(no, this);
 	}
 
-	public void restoreCar(int no) { 
-		RemovingCars.restoreCar(no,this);
-		cd.println("Restore Car not implemented in this version");
+	public void restoreCar(int no) {
+		removingCars.restoreCarFirstStep(no,this);
 	}
 
 	/* Speed settings for testing purposes */
