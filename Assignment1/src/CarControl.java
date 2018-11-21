@@ -41,7 +41,7 @@ class Conductor extends Thread {
 
 	final static int steps = 10;
 
-	double basespeed = 6.0;          // Tiles per second
+	double basespeed = -1.0;          // Tiles per second
 	double variation =  50;          // Percentage of base speed
 
 	CarDisplayI cd;                  // GUI part
@@ -149,14 +149,13 @@ class Conductor extends Thread {
 			curpos = startpos;
 			cd.register(thisCar);
 
-			while (true) {
+			W : while (true) {
 
 				try {
 				if (atGate(curpos)) { 
 					mygate.pass(); 
 					thisCar.setSpeed(chooseSpeed());
 				}
-
 				newpos = nextPos(curpos);
 
 
@@ -164,18 +163,14 @@ class Conductor extends Thread {
 					getSemaphoreTokenFromPos(newpos);
 				} catch (InterruptedException e) {
 					giveSemaphoreTokenFromPos(curpos);
-					_removingCars.waitForReactivation(this);
-					cd.println("Car "+no+" restored");
-					continue;
+					break W;
 				}
 				try {
 					thisCar.driveTo(newpos);
 				} catch (InterruptedException e) {
 					giveSemaphoreTokenFromPos(curpos);
 					giveSemaphoreTokenFromPos(newpos);
-					_removingCars.waitForReactivation(this);
-					cd.println("Car "+no+" restored");
-					continue;
+					break W;
 				}
 					_semaphores[curpos.row][curpos.col].V();
 					_alley.leaveAlleyIfExit(this);
@@ -187,11 +182,12 @@ class Conductor extends Thread {
 					curpos = newpos;
 
 
-
-
-
-
 			}
+			if (this.inCriticalRegion) {
+				_alley.leave(no);
+			}
+			this.sleeping = true;
+			System.out.println("Car "+no+" removed");
 
 		} catch (Exception e) {
 			cd.println("Exception in Car no. " + no);
@@ -216,7 +212,7 @@ public class CarControl implements CarControlI{
 	Semaphore criticalRegion;
 	Alley alley;
 	Barrier barrier;
-	RemovingCars removingCars = new RemovingCars();
+	RemovingCars removingCars = new RemovingCars(this);
 
 	public CarControl(CarDisplayI cd) {
 		this.cd = cd;
@@ -270,11 +266,11 @@ public class CarControl implements CarControlI{
 	}
 
 	public void removeCar(int no) {
-		removingCars.removeCar(no, this);
+		removingCars.removeCar(no);
 	}
 
 	public void restoreCar(int no) {
-		removingCars.restoreCarFirstStep(no,this);
+		removingCars.restoreCar(no);
 	}
 
 	/* Speed settings for testing purposes */
