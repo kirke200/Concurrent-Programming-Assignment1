@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="" />
+    <list default="true" id="20908d94-6887-42b5-8bf0-7708521b8c52" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Barrier.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/Output/production/Assignment1/Conductor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment1/src/Barrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment1/src/Barrier.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +68,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3245" />
+          <entry key="java" value="3275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3245" />
+          <entry key="JAVA" value="3275" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -84,11 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1316">
-              <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+            <state relative-caret-position="210">
+              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
               <folding>
                 <element signature="e#2277#2278#0" expanded="true" />
                 <element signature="e#2302#2303#0" expanded="true" />
@@ -119,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+            <state relative-caret-position="300">
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -246,8 +251,8 @@
         <option value="$PROJECT_DIR$/Assignment1/src/Pos.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Semaphore.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Alley.java" />
-        <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
         <option value="$PROJECT_DIR$/Assignment1/src/Barrier.java" />
+        <option value="$PROJECT_DIR$/Assignment1/src/CarControl.java" />
       </list>
     </option>
   </component>
@@ -312,7 +317,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542814652587" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542818887025" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ConcurrentProgramming" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -367,7 +372,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30522000" />
+    <option name="totallyTimeSpent" value="30670000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -379,10 +384,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="993" y="25" width="927" height="1055" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33370227" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16231555" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -392,13 +397,13 @@
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.48920864" visible="true" weight="0.32864866" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.48694664" visible="true" weight="0.32864866" />
       <window_info anchor="bottom" id="Debug" order="4" sideWeight="0.49946696" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.4997233" weight="0.32972974" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4991699" weight="0.32972974" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51079136" side_tool="true" visible="true" weight="0.32864866" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51305336" side_tool="true" visible="true" weight="0.32864866" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49363586" weight="0.32864866" />
       <window_info anchor="right" id="Database" order="0" />
@@ -513,10 +518,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/Alley.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment1/src/CarControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1316">
-          <caret line="70" column="27" lean-forward="true" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
+        <state relative-caret-position="210">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
           <folding>
             <element signature="e#2277#2278#0" expanded="true" />
             <element signature="e#2302#2303#0" expanded="true" />
@@ -530,26 +555,6 @@
             <element signature="e#4820#4821#0" expanded="true" />
             <element signature="e#4897#4898#0" expanded="true" />
             <element signature="e#4917#4918#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/Alley.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="24" column="36" lean-forward="true" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment1/src/Barrier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
