@@ -32,27 +32,25 @@ public class Barrier {
     }
 
     public void on(){
-        // Resets the semaphores to 0 for every index
-        // ER MÅSKE DUMT AT LAVE NYE SEMAPHORE OBJECTER? MEN ER DET BEDRE AT RESETTE DEM MED .P()?
-        for (int i = 0; i < barrierSemaphores.length; i++){
-            barrierSemaphores[i] = new Semaphore(0);
+        if(!barrierOn) {
+            // Resets the semaphores to 0 for every index
+            for (int i = 0; i < barrierSemaphores.length; i++) {
+                barrierSemaphores[i] = new Semaphore(0);
+            }
+            barrierOn = true;
         }
-
-        barrierOn = true;
-
     }
 
     public void off(){
-        System.out.println("BARRIER OFF");
-        barrierOn = false;
-        // Puts 9 semaphores into every index of the array to allow waiting cars to proceed.
-        for (int j = 0; j < 9 ; j++) {
-            for (int i = 0; i < 9; i++) {
-                barrierSemaphores[j].V();
+        if (barrierOn) {
+            barrierOn = false;
+            // Puts 9 semaphores into every index of the array to allow waiting cars to proceed.
+            for (int j = 0; j < 9; j++) {
+                for (int i = 0; i < 9; i++) {
+                    barrierSemaphores[j].V();
+                }
             }
         }
-        System.out.println(String.valueOf(barrierOn));
-        //for ( sem in )
 
 
     }

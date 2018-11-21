@@ -80,7 +80,7 @@ class Conductor extends Thread {
 
 		// special settings for car no. 0
 		if (no==0) {
-			basespeed = -1.0;  
+			basespeed = -1.0;
 			variation = 0; 
 		}
 	}
@@ -208,7 +208,6 @@ public class CarControl implements CarControlI{
 
 	public void barrierOn() {
 		barrier.on();
-
 	}
 
 	public void barrierOff() {
