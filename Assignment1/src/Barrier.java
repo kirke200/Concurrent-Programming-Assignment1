@@ -40,7 +40,7 @@ public class Barrier {
             notifyAll();
         }
     }
-
+    // Turns on barrier
     public synchronized void on(){
         if(!barrierOn){
             OK = false;
@@ -48,7 +48,7 @@ public class Barrier {
         }
 
     }
-
+    // Turns off barrier
     public synchronized void off(){
         if(barrierOn) {
             barrierOn = false;
@@ -56,7 +56,7 @@ public class Barrier {
             notifyAll();
         }
     }
-
+    // Checks if a car should stop at the barrier.
     public synchronized void isPosBarrierEntrance(Pos pos){
         if (barrierEntrance.contains(pos) && barrierOn==true){
             sync();
