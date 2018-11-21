@@ -24,12 +24,13 @@ public class RemovingCars {
     }
 
     public synchronized void restoreCar(int no) {
-        if (carControl.conductor[no].removed && !carControl.conductor[no].restorationUnderway) {
+        if (carControl.conductor[no].removed && !carControl.conductor[no].restorationUnderway && carControl.conductor[no].sleeping) {
             carControl.conductor[no].restorationUnderway = true;
             carControl.conductor[no] = new Conductor(no,carControl.cd,carControl.gate[no], carControl.semaphores, carControl.criticalRegion, carControl.alley, carControl.barrier, this);
             carControl.conductor[no].start();
             carControl.conductor[no].removed = false;
             carControl.conductor[no].restorationUnderway = false;
+            carControl.conductor[no].sleeping = false;
             notifyAll();
         } else {
             carControl.conductor[no].cd.println("Car " + no + " is not removed.");
